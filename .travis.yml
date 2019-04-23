@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run brightp/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "das-docker-react"
+  env: "DasDockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-792807678558"
+  bucket_path: "das-docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEYS
+  secret_key_id: 
+    secure: "$AWS_SECRET_KEYS"
